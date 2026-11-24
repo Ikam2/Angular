@@ -1,0 +1,26 @@
+<section class="details-section" id="conference" aria-labelledby="conference-details-title">
+  <div class="details-icon" aria-hidden="true">🎤</div>
+  @if (conference(); as selectedConference) {
+    <div class="details-content">
+      <h2 id="conference-details-title">Détail de la conférence</h2>
+      <p class="selection-note">Conférence sélectionnée depuis la liste.</p>
+      <p><strong>Titre :</strong> {{ selectedConference.title }}</p>
+      <p><strong>Description :</strong> {{ selectedConference.description }}</p>
+      <p><strong>Lieu :</strong> {{ selectedConference.place }}</p>
+      <p><strong>Date :</strong> {{ selectedConference.date | date: 'yyyy-MM-dd' }}</p>
+      <p><strong>Places disponibles :</strong> {{ remainingPlaces(selectedConference) }}</p>
+      <button
+        class="register-button"
+        [disabled]="remainingPlaces(selectedConference) === 0"
+        (click)="registerRequested.emit(selectedConference.id)"
+      >
+        {{ remainingPlaces(selectedConference) === 0 ? 'Complet' : "S'inscrire" }}
+      </button>
+    </div>
+  } @else {
+    <div class="details-content">
+      <h2 id="conference-details-title">Détail de la conférence</h2>
+      <p>Sélectionnez une conférence pour afficher ses informations.</p>
+    </div>
+  }
+</section>

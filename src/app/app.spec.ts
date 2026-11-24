@@ -14,10 +14,21 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should show only upcoming conferences and update the selected details', async () => {
     const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, test-angular');
+
+    expect(compiled.querySelectorAll('.conference-choice')).toHaveLength(3);
+    expect(compiled.textContent).not.toContain('TypeScript Day');
+
+    const firstConference = compiled.querySelector<HTMLButtonElement>('.conference-choice');
+    firstConference?.click();
+    fixture.detectChanges();
+
+    expect(compiled.querySelector('#conference')?.textContent).toContain(
+      'Les nouveautés d’Angular 21',
+    );
   });
 });

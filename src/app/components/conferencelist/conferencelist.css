@@ -1,0 +1,140 @@
+:host {
+  display: block;
+}
+
+.conference-section {
+  margin: 24px;
+  padding: 24px;
+  background: #fff;
+  border-left: 5px solid #0f766e;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgb(0 0 0 / 8%);
+}
+
+.conference-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.conference-heading h2 {
+  margin: 0;
+  color: #173b67;
+}
+
+.section-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+  place-items: center;
+  border-radius: 50%;
+  background: #e0f7f5;
+  font-size: 26px;
+}
+
+.hint {
+  margin: 6px 0 0;
+  color: #596579;
+}
+
+.search-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #263445;
+  font-weight: 600;
+}
+
+.search {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 540px;
+  margin-bottom: 18px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+}
+
+.search:focus-visible,
+.conference-choice:focus-visible,
+.register-button:focus-visible {
+  outline: 3px solid #0f766e;
+  outline-offset: 3px;
+}
+
+.conference-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+}
+
+.conference-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid #dbe3ec;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.conference-card:has(.conference-choice.active) {
+  border-color: #2563a6;
+  box-shadow: 0 0 0 2px rgb(37 99 166 / 14%);
+}
+
+.conference-choice {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.conference-choice h3 {
+  margin: 0 0 14px;
+  color: #1a3a63;
+  font-size: 1rem;
+}
+
+.conference-choice p {
+  margin: 8px 0;
+}
+
+.register-button {
+  margin-top: 8px;
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: #15803d;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-button.low-availability {
+  background: #b45309;
+}
+
+.register-button.full,
+.register-button:disabled {
+  background: #b91c1c;
+  cursor: not-allowed;
+}
+
+.empty {
+  color: #596579;
+}
+
+@media (max-width: 600px) {
+  .conference-section {
+    margin: 16px;
+    padding: 18px;
+  }
+}

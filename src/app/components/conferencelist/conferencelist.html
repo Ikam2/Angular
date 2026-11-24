@@ -1,0 +1,57 @@
+<section class="conference-section" id="conference-list" aria-labelledby="conference-list-title">
+  <div class="conference-heading">
+    <div class="section-icon" aria-hidden="true">📅</div>
+    <div>
+      <h2 id="conference-list-title">Liste des conférences à venir</h2>
+      <p class="hint">Cliquez sur une conférence pour afficher ses détails.</p>
+    </div>
+  </div>
+
+  <label class="search-label" for="conference-search">Rechercher une conférence</label>
+  <input
+    class="search"
+    id="conference-search"
+    type="search"
+    placeholder="Taper le titre de la conférence"
+    [value]="searchTerm()"
+    (input)="updateSearch($event)"
+  />
+
+  @if (upcomingConferences().length === 0) {
+    <p class="empty" role="status">
+      @if (searchTerm()) {
+        Aucune conférence à venir ne correspond à cette recherche.
+      } @else {
+        Aucune conférence à venir n'est enregistrée pour le moment.
+      }
+    </p>
+  } @else {
+    <div class="conference-grid">
+      @for (conference of upcomingConferences(); track conference.id) {
+        <article class="conference-card">
+          <button
+            class="conference-choice"
+            [class.active]="selectedConferenceId() === conference.id"
+            [attr.aria-pressed]="selectedConferenceId() === conference.id"
+            (click)="selected.emit(conference)"
+          >
+            <h3>{{ conference.title | uppercase }}</h3>
+            <p><strong>Date :</strong> {{ conference.date | date: 'dd/MM/yyyy' }}</p>
+            <p><strong>Lieu :</strong> {{ conference.place }}</p>
+            <p><strong>Places restantes :</strong> {{ remainingPlaces(conference) }}</p>
+          </button>
+
+          <button
+            class="register-button"
+            [class.low-availability]="remainingPlaces(conference) > 0 && remainingPlaces(conference) <= 10"
+            [class.full]="remainingPlaces(conference) === 0"
+            [disabled]="remainingPlaces(conference) === 0"
+            (click)="registerRequested.emit(conference.id)"
+          >
+            {{ remainingPlaces(conference) === 0 ? 'Complet' : "S'inscrire" }}
+          </button>
+        </article>
+      }
+    </div>
+  }
+</section>

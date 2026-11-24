@@ -1,0 +1,76 @@
+:host {
+  display: block;
+}
+
+.details-section {
+  display: flex;
+  gap: 16px;
+  margin: 24px;
+  padding: 22px;
+  border-left: 5px solid #7c3aed;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 5px 18px rgb(0 0 0 / 8%);
+}
+
+.details-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border-radius: 50%;
+  background: #f1eafe;
+  font-size: 24px;
+}
+
+.details-content {
+  min-width: 0;
+}
+
+.details-content h2 {
+  margin: 0 0 14px;
+  color: #173b67;
+}
+
+.details-content p {
+  overflow-wrap: anywhere;
+}
+
+.selection-note {
+  display: inline-block;
+  margin-top: 0;
+  padding: 5px 9px;
+  border-radius: 4px;
+  background: #eaf2fb;
+  color: #1a3a63;
+  font-weight: 600;
+}
+
+.register-button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: #1a3a63;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.register-button:focus-visible {
+  outline: 3px solid #7c3aed;
+  outline-offset: 3px;
+}
+
+.register-button:disabled {
+  background: #64748b;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .details-section {
+    margin: 16px;
+    padding: 18px;
+  }
+}
